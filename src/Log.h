@@ -10,14 +10,16 @@
 #define __STR(s) #s
 #define WHERE __STR(__FILE__ ":" __LINE__)
 
+#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
+
 #define _E(msg) \
-	std::cerr << "[ERROR] " << __FILE__ << ":" << __LINE__ << " " << msg << std::endl;
+	std::cerr << "[ERROR] " << __FILENAME__ << ":" << __LINE__ << " " << msg << std::endl;
 
 #define _W(msg) \
-	std::cerr << "[WARNING] " << __FILE__ << ":" << __LINE__ << " " << msg << std::endl;
+	std::cerr << "[WARNING] " << __FILENAME__ << ":" << __LINE__ << " " << msg << std::endl;
 
 #define _I(msg) \
-	std::cerr << "[INFO] " << msg << std::endl;
+	std::cerr << "[INFO] " << __FILENAME__ << ":" << __LINE__ << " " << msg << std::endl;
 
 #define SYSTEM_ERROR() \
 do { \
@@ -38,6 +40,12 @@ do { \
 #define THROW(msg) \
 do { \
 	throw std::runtime_error(msg);\
+} while (0)
+
+#define THROW_LOGIC(msg) \
+do { \
+	_E(msg);\
+	throw std::logic_error(msg);\
 } while (0)
 
 #endif /* __LOG_H__ */

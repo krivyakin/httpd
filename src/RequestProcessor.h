@@ -43,7 +43,7 @@ public:
 		Buffer<uint8_t>& buffer, HttpStatus status = OK)
 	{
 		std::stringstream ss;
-		ss << "HTTP/" << req.versionToStr() << " " << status <<
+		ss << "HTTP/" << req.versionToStr() << " " << status << " " <<
 			StatusToStr(status) << "\nContent-Length:" <<
 			size << "\n\n";
 
