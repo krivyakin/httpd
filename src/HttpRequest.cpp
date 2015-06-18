@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "HttpRequest.h"
+#include "Log.h"
 
 HttpRequest::HttpRequest(const std::string& req)
 {
@@ -65,6 +66,8 @@ int HttpRequest::parse(const std::string& req)
 
 		it->second = value;
 	}
+
+	_I("Request " << path);
 
 	return 0;
 }
