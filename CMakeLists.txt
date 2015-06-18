@@ -4,6 +4,10 @@ set(PROJECT "httpd")
 set(CMAKE_CXX_FLAGS "-std=c++11 -Werror -Wall -Wextra -pthread -g")
 
 aux_source_directory(${CMAKE_SOURCE_DIR}/src/ SRCS)
+set(SRCS ${SRCS}
+	main.cpp
+)
+include_directories(${CMAKE_SOURCE_DIR}/src/)
 file(GLOB HDRS "${CMAKE_SOURCE_DIR}/src/*.h")
 
 add_executable(${PROJECT} ${SRCS})
